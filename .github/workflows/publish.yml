@@ -28,10 +28,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Install vsce
-        run: npm install -g @vscode/vsce
+      - name: Install tools
+        run: npm install -g @vscode/vsce ovsx
 
-      - name: Publish to VS Code Marketplace
-        run: vsce publish ${{ inputs.bump }}
+      - name: Bump version
+        run: |
+          npm version ${{ inputs.bump }} -m "v%s"
+          git push
+          git push --tags
+
+      - name: Package extension
+        run: vsce package
+
+      - name: Publish to Open VSX
+        run: ovsx publish *.vsix
         env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
