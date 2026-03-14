@@ -31,16 +31,25 @@ jobs:
       - name: Install tools
         run: npm install -g @vscode/vsce ovsx
 
-      - name: Bump version
-        run: |
-          npm version ${{ inputs.bump }} -m "v%s"
-          git push
-          git push --tags
-
       - name: Package extension
-        run: vsce package
+        run: |
+          npm version ${{ inputs.bump }} --no-git-tag-version
+          vsce package
+
+      - name: Create Open VSX namespace (if needed)
+        run: npx ovsx create-namespace flowcircuits || true
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
 
       - name: Publish to Open VSX
         run: ovsx publish *.vsix
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
+      - name: Commit version bump and push
+        run: |
+          git add package.json
+          git commit -m "v$(node -p "require('./package.json').version")"
+          git tag "v$(node -p "require('./package.json').version")"
+          git push
+          git push --tags
