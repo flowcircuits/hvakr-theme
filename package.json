@@ -1,0 +1,40 @@
+{
+    "name": "hvakr-themes",
+    "displayName": "HVAKR Themes",
+    "description": "Light and dark color themes from HVAKR — built on the Blueprint.js palette with warm orange accents.",
+    "version": "1.0.0",
+    "publisher": "hvakr",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/flowcircuits/hvakr-vscode-theme"
+    },
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "keywords": [
+        "theme",
+        "hvakr",
+        "light",
+        "dark",
+        "blueprint"
+    ],
+    "icon": "icon.png",
+    "contributes": {
+        "themes": [
+            {
+                "label": "HVAKR Light",
+                "uiTheme": "vs",
+                "path": "./themes/hvakr-light-color-theme.json"
+            },
+            {
+                "label": "HVAKR Dark",
+                "uiTheme": "vs-dark",
+                "path": "./themes/hvakr-dark-color-theme.json"
+            }
+        ]
+    }
+}
