@@ -33,5 +33,5 @@ Both themes are built on the [Blueprint.js](https://blueprintjs.com) color palet
 Search for **HVAKR Themes** in the VS Code Extensions panel, or:
 
 ```
-ext install hvakr.hvakr-themes
+ext install flowcircuits.hvakr-themes
 ```
