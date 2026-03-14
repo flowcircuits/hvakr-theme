@@ -1,2 +1,5 @@
 .vscode/**
+.context/**
 .gitignore
+*.vsix
+node_modules/**
